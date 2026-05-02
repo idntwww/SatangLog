@@ -25,7 +25,7 @@ import { useUIStore } from "@/stores/ui.store";
 const navItems = [
   {
     label: "แดชบอร์ด",
-    href: "/",
+    href: "/dashboard",
     icon: LayoutDashboard,
   },
   {

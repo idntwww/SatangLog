@@ -13,7 +13,9 @@ export default auth((req) => {
   }
 
   // Protected dashboard routes: redirect to login if not authenticated
-  if (pathname.startsWith("/dashboard") && !isLoggedIn) {
+  const protectedPaths = ["/dashboard", "/transactions", "/analytics", "/settings", "/import"];
+  const isProtectedRoute = protectedPaths.some((path) => pathname.startsWith(path));
+  if (isProtectedRoute && !isLoggedIn) {
     return NextResponse.redirect(new URL("/login", req.nextUrl.origin));
   }
 
@@ -30,5 +32,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/api/:path*", "/login", "/register"],
+  matcher: ["/dashboard/:path*", "/transactions/:path*", "/analytics/:path*", "/settings/:path*", "/import/:path*", "/api/:path*", "/login", "/register"],
 };
